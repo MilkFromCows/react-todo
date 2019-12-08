@@ -14,7 +14,7 @@ class App extends React.Component {
       task: ''
     }
     // bind the class to each of the methods
-    this.render = this.render.bind(this);
+    
     this.toggleTaskStatus = this.toggleTaskStatus.bind(this);
     this.addTaskClick = this.addTaskClick.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
@@ -22,9 +22,10 @@ class App extends React.Component {
   }
  
   render() {
+    // I still need to save the tasks to local storage
+    localStorage.setItem("tasks", JSON.stringify(this.state.tasks));
     return (
       <div className="container" >
-        This is the app component
         <nav class="navbar navbar-inverse navbar-fixed-top">
           <div class="container">
             <div class="navbar-header">
