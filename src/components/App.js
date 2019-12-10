@@ -1,4 +1,6 @@
 import React from 'react';
+import TaskForm from './TaskForm';
+import TaskList from './TaskList';
 //import logo from './logo.svg';
 import './App.css';
   
@@ -8,21 +10,21 @@ class App extends React.Component {
     const tasks = JSON.parse(localStorage.getItem("TASKS"));
     this.state = {
       tasks: [
-        { task: 'This is the first task', isComplete: false},
-        { task: 'This is the second task', isComplete: false}
+        { task: 'This is the first task. TEST', isComplete: false},
+        { task: 'This is the second task.', isComplete: false}
       ],
       task: ''
     }
     // bind the class to each of the methods
     
     this.toggleTaskStatus = this.toggleTaskStatus.bind(this);
-    this.addTaskClick = this.addTaskClick.bind(this);
+    this.addTask = this.addTask.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
 
   }
  
   render() {
-    // I still need to save the tasks to local storage
+    //save the tasks to local storage
     localStorage.setItem("tasks", JSON.stringify(this.state.tasks));
     return (
       <div className="container" >
@@ -33,6 +35,11 @@ class App extends React.Component {
             </div>
           </div>
         </nav>
+        <TaskForm onSubmit={this.addTask}/>
+        <TaskList tasks={ this.state.tasks }
+                  index={ 0 }
+                  toggleTaskStatus={this.toggleTaskStatus} 
+                  deleteTask={this.deleteTask} />
       </div>
     )
   }
@@ -57,7 +64,7 @@ class App extends React.Component {
    console.log('toggleTaskStatus method');
   }
 
-  addTaskClick() {
+  addTask() {
     /*
     let addTB = document.getElementById('addTask');
     const text = addTB.value;

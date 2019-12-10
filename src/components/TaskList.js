@@ -1,4 +1,5 @@
 import React from 'react';
+import Task from './Task';
 
 class TaskList extends React.Component {
     constructor(props) {
@@ -10,7 +11,17 @@ class TaskList extends React.Component {
 
     render() {
         return (
-            <div>This is the TaskList component</div>
+            
+            <div className = "container">  
+                This is the TaskList component
+                <ul className="list-group" id="taskList">
+                    <Task task={ this.props.tasks[0] } 
+                          index={ this.props.index } 
+                          toggleTaskStatus={ this.props.toggleTaskStatus } 
+                          deleteTask={ this.props.deleteTask } 
+                          isComplete="false" />
+                </ul>
+            </div>
         )
     }
 }
